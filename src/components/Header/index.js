@@ -7,10 +7,6 @@ const HeaderContainer = styled.header`
   background-color: azure;
   display: flex;
   justify-content: center;
-
-  li {
-    list-style: none;
-  }
 `;
 
 function Header() {
