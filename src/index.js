@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,9 +29,18 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/favoritos" element={<p>Olá, mundo!</p>} /> {/*Rota de favoritos */}
+        <Route path="/" element={<App />} /> {/*Rota da Home (App.js) */}
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
+
+// O 'BrowserRouter' ele é o encapsulador das rotas, ele que permite que as rotas existam.
+// O 'Routes' é um "anunciador" que existirá rotas.
+// O 'Route' é a rota.
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
