@@ -12,21 +12,29 @@ const UltimosLancamentosContainer = styled.section`
   width: 100%;
 `;
 
-const Lancamentos = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
 const Livros = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 `;
 
-const TituloLivro = styled.h1`
+const Lancamentos = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+
+  &:hover ${Livros}:not(:hover) {
+    filter: blur(4px);
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+`;
+
+export const TituloLivro = styled.h1`
   font-size: 20px;
   background-color: #f6ac24;
   width: 100%;
