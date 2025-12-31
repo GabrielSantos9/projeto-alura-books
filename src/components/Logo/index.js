@@ -10,11 +10,16 @@ const LogoContainer = styled.div`
   margin-right: 10px;
  `;
 
+  const TextoLogo = styled.p`
+   color: white;
+   text-decoration: none !important;
+  `;
+
 function Logo() {
   return (
     <LogoContainer>
       <LogoImg src={logo} alt="logo"/>
-      <p><strong>Alura</strong>Books</p>
+      <TextoLogo><strong>Alura</strong>Books</TextoLogo>
     </LogoContainer>
   )
 }

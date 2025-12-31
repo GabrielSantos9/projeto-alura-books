@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getFavoritos } from "../servicos/favoritos";
+import { getFavoritos, deletarLivro } from "../servicos/favoritos";
 import { TituloContainer } from "../components/Titulo";
-import imageem from "../imgs/livro.png";
+import imgBook from "../imgs/livro.png";
+import FavoriteIcon from "../imgs/favorite-icon.png";
 
 const AppContainer = styled.div`
-  color: #fff;
   height: 100vh;
   width: 100vw;
   text-align: center;
@@ -14,6 +14,7 @@ const AppContainer = styled.div`
   position: relative;
   z-index: 1;
   display: flex;
+  background-color: #171717;
 `;
 
 const Livros = styled.div`
@@ -32,18 +33,21 @@ const FavoritosContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: #1c1c1c;
+  border-radius: 25px;
 
-  &:hover ${Livros}:not(:hover) {
+  &:has(${Livros}:hover) ${Livros}:not(:hover) {
     filter: blur(4px);
     opacity: 0.5;
     transform: scale(0.95);
+    background-color: red;
   }
 `;
 
 export const TituloLivro = styled.h1`
   font-size: 20px;
   background-color: #f6ac24;
-  color: black;
+  color: #1c1c1c;
   margin-left: 5px;
   margin-right: 5px;
   width: 100%;
@@ -51,6 +55,23 @@ export const TituloLivro = styled.h1`
 `;
 
 const ImgLivro = styled.img`
+  width: 220px;
+`;
+
+const IconFavorite = styled.img`
+  width: 30px;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+
+  :hover {
+    transition: 0.3s;
+    background-color: aliceblue;
+  }
+`;
+
+const LivrosIMG = styled.div`
+  position: relative;
   width: 220px;
 `;
 
@@ -62,13 +83,19 @@ function Favoritos() {
     setFavoritos(favoritosDaAPI);
   }
 
+  async function deleteFavorito(id) {
+    await deletarLivro(id);
+    await fetchFavoritos();
+    alert(`Livro de id: ${id} deletado com sucesso!`);
+  }
+
   useEffect(() => {
     fetchFavoritos();
   }, []);
 
   return (
     <AppContainer>
-      <TituloContainer cor="#000" tamanhoFonte="30px">
+      <TituloContainer cor="#ffffff" tamanhoFonte="30px">
         SEUS LIVROS FAVORITOS
       </TituloContainer>
       <FavoritosContainer>
@@ -76,9 +103,12 @@ function Favoritos() {
           (
             favorito //Puxa os favoritos
           ) => (
-            <Livros>
+            <Livros onClick={() => deleteFavorito(favorito.id)}>
               <TituloLivro>{favorito.nome}</TituloLivro>
-              <ImgLivro src={imageem} alt="image-book" />
+              <LivrosIMG>
+                <ImgLivro src={imgBook} alt="image-book" />
+                <IconFavorite src={FavoriteIcon} alt="teste" />
+              </LivrosIMG>
             </Livros>
           )
         )}

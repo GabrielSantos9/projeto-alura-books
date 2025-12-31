@@ -5,19 +5,23 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const HeaderContainer = styled.header`
-  background-color: #000000;
+  background-color: #000000ed;
   color: white;
   display: flex;
   justify-content: center;
   text-decoration: none;
 `;
 
+const LogoLink = styled(Link)`
+  text-decoration: none;
+`;
+
 function Header() {
   return (
     <HeaderContainer>
-      <Link to="/">
+      <LogoLink to="/">
        <Logo />
-      </Link>
+      </LogoLink>
       <OptionsHeader />
       <IconsHeader />
     </HeaderContainer>

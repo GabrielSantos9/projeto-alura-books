@@ -19,17 +19,25 @@ const Option = styled.li`
   color: white;
 `;
 
+const Palavras = styled.p`
+  text-decoration: none;
+`;
+
 function OptionsHeader() {
   return (
     <Options>
       {textOptions.map((text) => (
-        <Link to={`/${text.toLowerCase()}`}><Option><p>{text}</p></Option></Link>
+        <Link to={`/${text.toLowerCase()}`} style={{textDecoration:"none"}}>
+          <Option>
+            <Palavras>{text}</Palavras>
+          </Option>
+        </Link>
       ))}
     </Options>
   );
 }
 
-//O '<Link>' envolvido ao redor da '<Option>' e dentro do map serve para em cada opção selecionada faça com que navegue nessa opção já com o link alterado, por ex: se clicar na opção Favoritos ele transfira para a página favoritos (http://localhost:3000/favoritos). 
+//O '<Link>' envolvido ao redor da '<Option>' e dentro do map serve para em cada opção selecionada faça com que navegue nessa opção já com o link alterado, por ex: se clicar na opção Favoritos ele transfira para a página favoritos (http://localhost:3000/favoritos).
 
 //O 'to={`${text}`}': serve para cada opção selecionada altere a página desejada no link, por ex: se clicar em Favoritos no Header vá para a página da opção (http://localhost:3000/favoritos).
 

@@ -2,6 +2,7 @@ import Input from "../Input";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { getLivros } from "../../servicos/livros";
+import {postFavorito} from "../../servicos/favoritos"
 
 const PesquisaContainer = styled.section`
   background-image: linear-gradient(90deg, #002f52 35%, #326589 165%);
@@ -80,6 +81,11 @@ function Pesquisa() {
   //O 'async' (assincronismo): ele faz com que a o código da função trabalhe em tempos diferentes.
   //O 'await' (esperar): enquanto houver o tempo de espera. Aonde é adicionado o await, o código tem que esperar o resultado chegar para depois seguir adiante para o próximo código (que nesse caso seria o 'return response.data)
 
+async function insertFavorito(id) {
+  await postFavorito(id)
+  alert(`Livro de id:${id} inserido com sucesso!`);
+}
+
   return (
     <PesquisaContainer>
       <Titulo>Já sabe por onde começar?</Titulo>
@@ -106,7 +112,7 @@ function Pesquisa() {
       />
       <TotalRes>
         {livrosPesquisados.map((livro) => (
-          <ResultadoPesquisa>
+          <ResultadoPesquisa onClick={() => insertFavorito(livro.id)}>
             <TituloLivro>{livro.nome}</TituloLivro>{" "}
             {/* exibe o nome do livro encontrado. */}
             <ImgLivro src={livro.src} />{" "}
@@ -117,6 +123,8 @@ function Pesquisa() {
     </PesquisaContainer>
   );
 }
+
+//insertFavorito(livro.id): tira o id do livro, via map.
 
 //'onBlur' é disparado quando o elemento perde o foco, quando clicamos fora do input por exemplo. Ele é usado aqui para atualizar o estado textoDigitado com o valor atual do input quando o usuário termina de digitar e sai do campo. Pode ser utilizado como uma função que nem no caso acima, onde sempre quando o usuario digitar algo e clicar fora do input, o valor digitado será salvo no estado textoDigitado e será exibido na tela dentro do <h1>.
 

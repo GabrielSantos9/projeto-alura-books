@@ -14,8 +14,18 @@ async function getFavoritos() {
 //O 'async' (assincronismo): ele faz com que a o código da função trabalhe em tempos diferentes.
 //O 'await' (esperar): enquanto houver o tempo de espera. Aonde é adicionado o await, o código tem que esperar o resultado chegar para depois seguir adiante para o próximo código (que nesse caso seria o 'return response.data)
 
+async function postFavorito(id) {
+  await FavoritosAPI.post(`/${id}`) //`/${id}`: id do livro que estamos inserindo.
+}
+
+async function deletarLivro(id) {
+  await FavoritosAPI.delete(`/${id}`) //`/${id}`: id do livro que estamos inserindo.
+}
+
 export {
   getFavoritos,
+  postFavorito,
+  deletarLivro
 }
 
 
