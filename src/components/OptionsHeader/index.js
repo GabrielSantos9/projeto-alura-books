@@ -1,37 +1,52 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const textOptions = ["CATEGORIAS", "FAVORITOS", "ESTANTE"]; // Array que será utilizada na 'li'
 
 const Options = styled.ul`
   display: flex;
-`;
-
-const Option = styled.li`
-  min-width: 120px;
-  font-size: 16px;
-  display: flex;
   align-items: center;
-  text-align: center;
-  justify-content: center;
-  height: 100%;
-  padding: 0 5px;
-  color: white;
 `;
 
-const Palavras = styled.p`
+const Option = styled(NavLink)`
+  color: white;
+  padding: 0 15px;
+  cursor: pointer;
+  position: relative;
   text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    width: 0;
+    height: 2px;
+    background-color: #f6ac24;
+    transform: translateX(-50%);
+    transition: width 0.3s;
+  }
+
+  &:hover::after {
+    width: 80%;
+  }
+
+  &.active {
+    color: #f6ac24;
+  }
+
+  &.active::after {
+    width: 80%;
+  }
 `;
 
 function OptionsHeader() {
   return (
     <Options>
       {textOptions.map((text) => (
-        <Link to={`/${text.toLowerCase()}`} style={{textDecoration:"none"}}>
-          <Option>
-            <Palavras>{text}</Palavras>
-          </Option>
-        </Link>
+        <Option key={text} to={`/${text.toLowerCase()}`}>
+          <p>{text}</p>
+        </Option>
       ))}
     </Options>
   );

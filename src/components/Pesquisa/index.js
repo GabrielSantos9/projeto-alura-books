@@ -113,9 +113,9 @@ async function insertFavorito(id) {
       <TotalRes>
         {livrosPesquisados.map((livro) => (
           <ResultadoPesquisa onClick={() => insertFavorito(livro.id)}>
-            <TituloLivro>{livro.nome}</TituloLivro>{" "}
+            <TituloLivro>{livro.nome}</TituloLivro>
             {/* exibe o nome do livro encontrado. */}
-            <ImgLivro src={livro.src} />{" "}
+            <ImgLivro src={livro.src} />
             {/* exibe a imagem do livro encontrado. */}
           </ResultadoPesquisa>
         ))}
