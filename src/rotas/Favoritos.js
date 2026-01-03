@@ -7,8 +7,8 @@ import FavoriteIcon from "../imgs/favorite-icon.png";
 import FavoriteTeste from "../imgs/favorite-test.png";
 
 const AppContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  
   text-align: center;
   align-items: center;
   flex-direction: column;
@@ -29,13 +29,14 @@ const Livros = styled.div`
 
 const FavoritosContainer = styled.div`
   display: flex;
-  width: 70%;
+  max-width: 60%;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   background-color: #1c1c1c;
   border-radius: 25px;
+  margin-bottom: 20px;
 
   &:has(${Livros}:hover) ${Livros}:not(:hover) {
     filter: blur(4px);

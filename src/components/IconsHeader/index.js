@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const Icon = styled.li`
   margin-right: 40px;
   width: 25px;
+  cursor: pointer;
 `;
 
 const Icons = styled.ul`
