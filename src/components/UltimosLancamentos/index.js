@@ -28,7 +28,8 @@ const Lancamentos = styled.div`
   align-items: center;
   margin-bottom: 20px;
   background-color: #1c1c1c;
-  width: 50%;
+  min-width: 70%;
+  max-width: 100%;
   justify-content: center;
   border-radius: 25px;
 

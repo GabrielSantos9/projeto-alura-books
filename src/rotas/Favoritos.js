@@ -8,7 +8,6 @@ import FavoriteTeste from "../imgs/favorite-test.png";
 
 const AppContainer = styled.div`
   min-height: 100vh;
-  
   text-align: center;
   align-items: center;
   flex-direction: column;
@@ -36,7 +35,6 @@ const FavoritosContainer = styled.div`
   justify-content: center;
   background-color: #1c1c1c;
   border-radius: 25px;
-  margin-bottom: 20px;
 
   &:has(${Livros}:hover) ${Livros}:not(:hover) {
     filter: blur(4px);
@@ -55,6 +53,19 @@ export const TituloLivro = styled.h1`
   height: 35px;
   overflow: hidden;
   margin-top: 0px;
+  margin-bottom: 0px;
+`;
+
+export const PrecoLivro = styled.h3`
+  font-size: 13px;
+  color: #04ff00;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  width: 209px;
+  overflow: hidden;
+  margin-top: 0px;
+  margin-bottom: 0px;
 `;
 
 const ImgLivro = styled.img`
@@ -111,10 +122,11 @@ function Favoritos() {
                 <IconFavorite
                   onClick={() => deleteFavorito(favorito.id)}
                   src={FavoriteIcon}
-                  alt="teste"
+                  alt="Favorite Icon"
                 />
               </LivrosIMG>
               <TituloLivro>{favorito.nome}</TituloLivro>
+              <PrecoLivro>{favorito.preco}</PrecoLivro>
             </Livros>
           )
         )}
